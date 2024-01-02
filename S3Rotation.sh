@@ -30,7 +30,7 @@ fi
 for BUCKET_ID in "${BUCKET_IDS[@]}"; do
     log_message "Processing bucket: $BUCKET_ID"
 
-    # List the files in the bucket with verbose logging
+    # List the files in the bucket
     FILE_LIST_ENDPOINT="$API_URL/b2api/v2/b2_list_file_names"
     FILE_LIST=$(curl -s -H "Authorization: $AUTH_TOKEN" \
         -d "{\"bucketId\":\"$BUCKET_ID\"}" \
