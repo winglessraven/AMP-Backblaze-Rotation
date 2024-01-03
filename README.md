@@ -1,4 +1,4 @@
-# AMP Backup Backblaze B2 Rotation
+# AMP Backblaze B2 Rotation
 
 This script is designed to automate the rotation of backup files generated in AMP (by Cubecoders) that are sent to Backblaze B2 storage. It manages the number of backup files in each bucket, ensuring that only the newest backups are kept up to a specified limit. Additionally, it provides an option to modify AMP's `Backups.json` files to reflect the changes in backup storage.
 
