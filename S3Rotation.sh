@@ -7,7 +7,7 @@ MAX_FILES=7  # The maximum number of files you want to keep
 LOG_FILE="/path/to/logfile.log"
 BUCKET_IDS=("bucket1id" "bucket2id" "bucket3id") # List of bucket IDs
 AMP_LOG_DIR="/home/amp/.ampdata/instances/" # Default AMP log directory
-MODIFY_AMP_LOGS=true # Flag to modify AMP logs
+MODIFY_AMP_LOGS=false # Flag to modify AMP logs
 
 # Check for --modify-amp-logs argument
 if [[ "$1" == "--modify-amp-logs" ]]; then
