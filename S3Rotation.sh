@@ -33,13 +33,13 @@ process_amp_logs() {
             # Backup the original file
             cp "$file" "${file}.bak"
 
-            # Set StoredRemotely to false for the given UUID
-            modified=$(jq --arg uuid "$uuid" 'if (.[$uuid]?) then (.[$uuid].StoredRemotely) = false else . end' "$file")
+            # Safely update the StoredRemotely field only if the UUID exists
+            modified=$(jq --arg uuid "$uuid" 'if has($uuid) then .[$uuid].StoredRemotely = false else . end' "$file")
             echo "$modified" > "$file"
             log_message "Set StoredRemotely to false for UUID $uuid in file: $file"
 
-            # Remove entries where both StoredLocally and StoredRemotely are false
-            modified=$(jq 'del(.[] | select(.StoredLocally == false and .StoredRemotely == false))' "$file")
+            # Remove entries where both StoredLocally and StoredRemotely are false, and ignore empty keys
+            modified=$(jq 'del(.[] | select((.StoredLocally // false) == false and (.StoredRemotely // false) == false))' "$file")
             echo "$modified" > "$file"
             log_message "Removed entries with both StoredLocally and StoredRemotely set to false in file: $file"
         else
